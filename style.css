@@ -1,0 +1,18 @@
+body {
+    background-color: #eeeeee;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+.form,
+.greeting {
+    display: none;
+}
+form + h4 {
+    display: none;
+}
+.showing {
+    display: block;
+}
