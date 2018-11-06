@@ -5,24 +5,23 @@ const todo = (function() {
 
   const TODO_LS_KEY = 'todos';
 
-  const todosList = [];
+  let todosList = [];
+
+  function deleteTodo(event) {
+    const btn = event.target;
+    const li = btn.parentNode;
+    ul.removeChild(li);
+
+    const newToDoList = todosList.filter((item) => item.id !== parseInt(li.id));
+    todosList = newToDoList;
+    savedTodos();
+  }
 
   function loadTodos() {
     const list = localStorage.getItem(TODO_LS_KEY);
     if (!list) return false;
     const parseList = JSON.parse(list);
     parseList.forEach(item => paintToDo(item.text));
-    // const html = parseList.reduce((result, item, key) => {
-    //   result.push(`
-    //   <li id="${item.id}">
-    //     <span>${item.text}</span>
-    //     <button>X</button>
-    //   </li>
-    //   `);
-    //   todosList.push(item);
-    //   return result;
-    // }, []).join('');
-    // ul.innerHTML = html;
   }
 
   function savedTodos() {
@@ -39,11 +38,18 @@ const todo = (function() {
   function paintToDo(text) {
     const id = todosList.length + 1;
     const li = document.createElement('li');
+    const delBtn = document.createElement('button');
+    const span = document.createElement('span');
+
+    delBtn.innerText = 'X';
+    delBtn.addEventListener('click', deleteTodo);
+
+    span.innerText = text;
+
     li.id = id;
-    li.innerHTML = `
-      <span>${text}</span>
-      <button>X</button>
-  `
+    li.appendChild(delBtn);
+    li.appendChild(span);
+
     ul.appendChild(li);
 
     todosList.push({
