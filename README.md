@@ -7,3 +7,6 @@
 > [Vanilla JS](http://vanilla-js.com/) is a fast, lightweight, cross-platform framework
 > for building incredible, powerful JavaScript applications.
 
+## 현재의 날씨와 기온을 가져오는 open api
+- [openweathermap](https://openweathermap.org/)
+
